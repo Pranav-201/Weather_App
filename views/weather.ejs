@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Weather in <%= weather ? weather.name : "Unknown" %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="<%= weather ? weather.weather[0].main.toLowerCase() : '' %>">
+
+  <% if (error) { %>
+    <div class="card error">
+      <h2><%= error %></h2>
+      <a href="/">🔙 Try again</a>
+    </div>
+  <% } else if (weather) { %>
+    <div class="card">
+      <h1>🌍 <%= weather.name %>, <%= weather.sys.country %></h1>
+      <h2><%= weather.weather[0].main %> - <%= weather.weather[0].description %></h2>
+      <h3>🌡 Temp: <%= weather.main.temp %> °C</h3>
+      <p>💧 Humidity: <%= weather.main.humidity %>%</p>
+      <p>🌬 Wind Speed: <%= weather.wind.speed %> m/s</p>
+      <a href="/">🔄 Search another city</a>
+    </div>
+  <% } %>
+
+</body>
+</html>
